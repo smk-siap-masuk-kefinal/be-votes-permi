@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/login', [PemilihController::class, 'login']);
+
+Route::post('/logout', [PemilihController::class, 'logout']);
