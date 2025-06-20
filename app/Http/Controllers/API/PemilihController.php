@@ -53,4 +53,38 @@ class PemilihController extends Controller
             ], 200);
 
     }
+
+    public function logout(Request $request){
+
+        $request->validate([
+            'nik' => 'required',
+            'kode_logout' => 'required',
+        ]);
+        $nik = Pemilih::where('nik', $request->nik)->first();
+        $logoutCode = $nik->kode_logout ?? null;
+
+        if(!$nik){
+            return response()->json([
+                'success' => false,
+                'data' => null,
+                'message' => 'NIK not found'
+            ], 404);
+        }
+
+        if($logoutCode !== $request->kode_logout){
+            return response()->json([
+                'success' => false,
+                'data' => null,
+                'message' => 'Invalid logout code'
+            ], 403);
+        }
+
+
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Logout Successful'
+        ], 200);
+    }
 }
