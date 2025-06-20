@@ -10,12 +10,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
 
     <!-- ========================= CSS here ========================= -->
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css" /> -->
-    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" /> 
+    <link rel="stylesheet" href="{{ asset('css/LineIcons.2.0.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/tiny-slider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
@@ -623,12 +623,12 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/glightbox.min.js"></script>
-    <script src="assets/js/count-up.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/tiny-slider.js') }}"></script>
+    <script src="{{ asset('js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('js/count-up.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script type="text/javascript">
         //====== counter up
         var cu = new counterUp({
