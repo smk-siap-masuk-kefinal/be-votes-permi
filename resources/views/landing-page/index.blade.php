@@ -623,12 +623,12 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/glightbox.min.js"></script>
-    <script src="assets/js/count-up.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/tiny-slider.js') }}"></script>
+    <script src="{{ asset('js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('js/count-up.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script type="text/javascript">
         //====== counter up
         var cu = new counterUp({
