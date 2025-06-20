@@ -25,16 +25,22 @@ class PemilihResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nik')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->maxLength(16)
+                    ,
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('qr_code')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('kode_logout')
-                    ->maxLength(255),
-                Forms\Components\Toggle::make('is_voted')
-                    ->required(),
+                // Forms\Components\TextInput::make('qr_code')
+                //     ->maxLength(255),
+                // Forms\Components\FileUpload::make('attachment')
+                // ->disk('s3')
+                // ->directory('form-attachments')
+                // ->visibility('private'),
+                // Forms\Components\TextInput::make('kode_logout')
+                //     ->maxLength(255),
+                // Forms\Components\Toggle::make('is_voted')
+                //     ->required(),
                 Forms\Components\TextInput::make('tps')
                     ->maxLength(255),
             ]);
@@ -44,19 +50,37 @@ class PemilihResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('avatar')
+                    ->disk('public')
+                    ->defaultImageUrl('https://ui-avatars.com/api/?name=Avatar&background=random')
+                    ->square()
+                        // ->toggleable(isToggledHiddenByDefault: true)
+                    ->size(150)
+                ,
                 Tables\Columns\TextColumn::make('nik')
-                    ->numeric()
-                    ->sortable(),
+                    ->copyable()
+                    ->copyMessage('NIK Berhasil disalin')
+                    ->copyMessageDuration(1500)
+                    // ->numeric()
+                    // ->sortable()
+                ,
                 Tables\Columns\TextColumn::make('nama')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('qr_code')
-                    ->searchable(),
+                // ->searchable()
+                // ->limit(5)
+                ,
+                // Tables\Columns\TextColumn::make('qr_code')
+                //     ->searchable(),
                 Tables\Columns\TextColumn::make('kode_logout')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                ,
                 Tables\Columns\IconColumn::make('is_voted')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                ,
                 Tables\Columns\TextColumn::make('tps')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
