@@ -25,14 +25,6 @@
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
-
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-inner">
@@ -52,8 +44,8 @@
                     <div class="nav-inner">
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="assets/images/logo/white-logo.svg" alt="Logo" />
+                            <a class="navbar-brand" href="{{ route('landing-page.index') }}">
+                                <img src="{{ asset('images/logo/white-logo.svg') }}" alt="laaogo" />
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -86,7 +78,7 @@
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                        {{-- <ul class="sub-menu collapse" id="submenu-1-4">
                                             <li class="nav-item">
                                                 <a href="javascript:void(0)">Blog Grid Sidebar</a>
                                             </li>
@@ -96,7 +88,7 @@
                                             <li class="nav-item">
                                                 <a href="javascript:void(0)">Blog Single Sibebar</a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                     <li class="nav-item">
                                         <a href="javascript:void(0)" aria-label="Toggle navigation">Contact</a>
@@ -105,7 +97,7 @@
                             </div>
                             <!-- navbar collapse -->
                             <div class="button add-list-button">
-                                <a href="javascript:void(0)" class="btn">Get it now</a>
+                                <a href="{{ route('filament.admin.auth.login') }}" class="btn">Dashboard Admin</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -125,11 +117,10 @@
                 <div class="col-lg-5 col-md-12 col-12">
                     <div class="hero-content">
                         <h1 class="wow fadeInLeft" data-wow-delay=".4s">
-                            A powerful app for your business.
+                            VOTES 
                         </h1>
                         <p class="wow fadeInLeft" data-wow-delay=".6s">
-                            From open source to pro services, Piqes helps you to build,
-                            deploy, test, and monitor apps.
+                            Valid Online Transparent Election System (VOTES) is Voting Platform to solve Election System Problems
                         </p>
                         <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
@@ -140,7 +131,7 @@
                 </div>
                 <div class="col-lg-7 col-md-12 col-12">
                     <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="assets/images/hero/phone.png" alt="#" />
+                        <img src="{{ asset('images/hero/phone.png') }}" alt="#" />
                     </div>
                 </div>
             </div>
@@ -154,13 +145,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">Features</h3>
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">Fitur Utama</h3>
                         <h2 class="wow fadeInUp" data-wow-delay=".4s">
-                            Your Experience Gets Better And Better Over Time.
+                            Mempermudah Proses Pemilihan secara Transparan
                         </h2>
                         <p class="wow fadeInUp" data-wow-delay=".6s">
-                            There are many variations of passages of Lorem Ipsum available,
-                            but the majority have suffered alteration in some form.
+                            Banyaknya Fitur dan Keamanan yang Tersedia pada VOTES Membuat Proses Pemilihan Menjadi Lebih Mudah dan Transparan
                         </p>
                     </div>
                 </div>
@@ -170,7 +160,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
                         <i class="lni lni-cloud-upload"></i>
-                        <h3>Push to Deploy</h3>
+                        <h3>Terintegrasi</h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -182,7 +172,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
                         <i class="lni lni-lock"></i>
-                        <h3>SSL Certificates</h3>
+                        <h3>Keamanan Berlapis</h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -194,7 +184,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
                         <i class="lni lni-reload"></i>
-                        <h3>Simple Queues</h3>
+                        <h3>Mempercepat Proses Perhitungan</h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -206,7 +196,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
                         <i class="lni lni-shield"></i>
-                        <h3>Advanced Security</h3>
+                        <h3>Perlindungan Data Pengguna</h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -218,7 +208,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
                         <i class="lni lni-cog"></i>
-                        <h3>Powerful API</h3>
+                        <h3>Kemudahan Pengaturan</h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -230,7 +220,7 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
                         <i class="lni lni-layers"></i>
-                        <h3>Database Backups</h3>
+                        <h3></h3>
                         <p>
                             It is a long established fact that a reader will be distracted
                             by the readable content of a page at its layout.
@@ -249,10 +239,9 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                     <div class="title">
-                        <h2>Trusted by developers from over 80 planets</h2>
+                        <h2>Platform Yang Dapat Mengubah Sistem Pemilihan</h2></h2>
                         <p>
-                            There are many variations of passages of Lorem Ipsum available,
-                            but the majority.
+                            Dengan VOTES, Banyak Kelebihan dan Dampak Positif yang Dihasilkan Berupa : 
                         </p>
                     </div>
                 </div>
@@ -263,17 +252,17 @@
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
                                 <h3 class="counter">
-                                    <span id="secondo1" class="countup" cup-end="100">100</span>%
+                                    <span id="secondo1" class="countup" cup-end="100">50</span>%
                                 </h3>
-                                <p>satisfaction</p>
+                                <p>Penghematan Anggaran</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
                                 <h3 class="counter">
-                                    <span id="secondo2" class="countup" cup-end="120">120</span>K
+                                    <span id="secondo2" class="countup" cup-end="95">95</span>%
                                 </h3>
-                                <p>Happy Users</p>
+                                <p>Uptime Server</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
@@ -292,7 +281,7 @@
     <!-- End Achievement Area -->
 
     <!-- Start Pricing Table Area -->
-    <section id="pricing" class="pricing-table section">
+    {{-- <section id="pricing" class="pricing-table section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -473,11 +462,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--/ End Pricing Table Area -->
 
     <!-- Start Call To Action Area -->
-    <section class="section call-action">
+    {{-- <section class="section call-action">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
@@ -496,7 +485,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End Call To Action Area -->
 
     <!-- Start Footer Area -->
@@ -510,7 +499,7 @@
                         <div class="single-footer f-about">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#" />
+                                    <img src="{{ asset('images/logo/white-logo.svg') }}" alt="#" />
                                 </a>
                             </div>
                             <p>
