@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pemilihs', function (Blueprint $table) {
             $table->id();
-            $table->double('nik')->unique();
+            $table->string('nik')->unique();
             $table->string('nama');
             $table->string('qr_code')->nullable();
             $table->string('kode_logout')->nullable();
