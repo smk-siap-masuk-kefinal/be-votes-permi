@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('nama');
             $table->string('qr_code')->nullable();
+            $table->string('path_qr_code')->nullable();
+            $table->string('url_qr_code')->nullable();
             $table->string('kode_logout')->nullable();
             $table->boolean('is_voted')->default(false);
+            $table->boolean('is_logout')->default(false);
             $table->string('tps')->nullable();
             $table->timestamps();
         });
