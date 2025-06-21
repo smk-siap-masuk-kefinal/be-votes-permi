@@ -10,12 +10,13 @@ use Filament\Forms\Form;
 use Milon\Barcode\DNS2D;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Placeholder;
 use App\Filament\Resources\PemilihResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PemilihResource\RelationManagers;
-use Filament\Forms\Components\Placeholder;
 
 class PemilihResource extends Resource
 {
@@ -36,38 +37,42 @@ class PemilihResource extends Resource
                     ->maxLength(16)
                     ->live(onBlur: true)
                     ->afterStateUpdated(function(Set $set, ?string $state){
-                        if(blank($state)){
-                            // $set('url_qr_code', null); //simpan ketika sudah mau buat new migration
-                            $set('qr_code', null);
+                        if (blank($state)) {
                             $set('kode_logout', null);
+                            $set('url_qr_code', null);
+                            $set('qr_code', null);
                             return;
                         }
 
-                        //buat url qr dengan url aplikasi/url/isi-nik-unik  
                         $kodeLogout = substr($state, -6);
-                        $set('kode_logout', $kodeLogout); //simpan kode logout
-                        $urlQR = env('APP_URL') . '/url/' . $state ; //link asli
-                        // $urlQR = 'https://ui-avatars.com/api/?name=' . $state; // link kw smntara
-                        // $urlQR = 'https://ui-avatars.com/api/?name=Adli&Kece' ; // link kw smntara
-                        $set('url_qr_code', $urlQR); //simpan url barcode
+                        $set('kode_logout', $kodeLogout);
                         
-                        $barcode = new DNS2D();
-                        // $barcodePath = $state;
-                        $barcodePath = 'https://ui-avatars.com/api/?name=Adli&Kece' ; // link kw barcode smntara
-                        
-                        
-                    // ambil barcode dengan library milon
-                        // $generatedBarcode = $barcode->getBarcodePNGPath('https://ui-avatars.com/api/?name=Adli&Kece', 'QRCODE');
-                        // $generatedBarcode = $barcode->getBarcodePNGPath('https://ui-avatars.com/api/?name=Adli&Kece', 'QRCODE');
-                        $generatedBarcode =  DNS2D::getBarcodePNGPath('4455666', 'QRCODE', 3, 3);
-                     // simpan qr code ke storage
-                        Storage::disk('public')->put('barcodes/123.png', $generatedBarcode);
+                        $urlKtp = env('APP_URL') . $state;
+                        $set('url_qr_code', $urlKtp);
 
-                    // simpan path qr code di db
-                        $set('qr_code', $barcodePath);
+                        // Panggil API GoQR.me untuk membuat barcode
+                        $apiUrl = 'https://api.qrserver.com/v1/create-qr-code/';
+                        $response = Http::get($apiUrl, [
+                            'data' => $urlKtp,
+                            'size' => '250x250',
+                            'ecc'  => 'M',
+                            'margin' => 1,
+                        ]);
 
-                    })
-                    ,
+                        // Simpan gambar 
+                        if ($response->successful()) {
+                            $imageData = $response->body();
+                            $filePath = 'barcodes/' . $state . '.png';
+                            Storage::disk('public')->put($filePath, $imageData);
+                            
+                            // simpan patj di db
+                            $set('qr_code', $filePath);
+                        } else {
+                            // kasi kosong klo gagal
+                            $set('qr_code', null);
+                        }
+                    }),
+                    
                  Forms\Components\TextInput::make('url_qr_code')
                     ->label('URL QR Code')
                     // ->disabled() 
@@ -114,7 +119,7 @@ class PemilihResource extends Resource
                     // ->defaultImageUrl(asset('/images/default/default.png'))
                      ->defaultImageUrl(url('/images/default/default.png'))
                     ->square()
-                        // ->toggleable(isToggledHiddenByDefault: true)
+                        // ->toggleable(isToggledHiddenByDef ault: true)
                     ->size(150)
                 ,
                 Tables\Columns\TextColumn::make('nik')
