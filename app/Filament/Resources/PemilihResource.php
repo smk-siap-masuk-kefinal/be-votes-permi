@@ -2,16 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PemilihResource\Pages;
-use App\Filament\Resources\PemilihResource\RelationManagers;
-use App\Models\Pemilih;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Pemilih;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
+use Milon\Barcode\DNS2D;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PemilihResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PemilihResource\RelationManagers;
 
 class PemilihResource extends Resource
 {
@@ -27,6 +30,34 @@ class PemilihResource extends Resource
                     ->required()
                     ->numeric()
                     ->maxLength(16)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function(Set $set, ?string $state){
+                        if(blank($state)){
+                            // $set('url_qr_code', null); //simpan ketika sudah mau buat new migration
+                            $set('qr_code', null);
+                            $set('kode_logout', null);
+                            return;
+                        }
+
+                        //buat url qr dengan url aplikasi/url/isi-nik-unik  
+                        // $urlQR = env('APP_URL') . '/url/' . $state ;
+                        // $set('url_qr_code', $urlQR); //simpan url barcode
+                        
+                        $barcode = new DNS2D();
+                        $barcodePath = '/barcodes/' . $state . '.png';
+                        
+                        
+                    // ambil barcode dengan library milon
+                        $generatedBarcode = $barcode->getBarcodePNG($barcodePath, 'QRCODE');
+
+                     // simpan qr code ke storage
+                        Storage::disk('public')->put($barcodePath, $generatedBarcode);
+                    
+                    // simpan path qr code di db
+                        $set('foto_barcode', $barcodePath);
+
+                    })
+
                     ,
                 Forms\Components\TextInput::make('nama')
                     ->required()
